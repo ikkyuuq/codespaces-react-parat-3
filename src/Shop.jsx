@@ -14,21 +14,16 @@ const Item = (props) => {
 }
 
 const Shop = () => {
-    const baseURL = 'http://localhost:3001'
+    const baseURL = 'https://crispy-acorn-9w5qwwr4gxg3945j-5000.app.github.dev'
     const [cart, setCart] = useState([])
-    const [products, setProduct] = useState([
-        {id:0,name:"Notebook Acer Swift",price:45900,img:"https://img.advice.co.th/images_nas/pic_product4/A0147295/A0147295_s.jpg"},
-        {id:1,name:"Notebook Asus Vivo",price:19900,img:"https://img.advice.co.th/images_nas/pic_product4/A0146010/A0146010_s.jpg"},
-        {id:2,name:"Notebook Lenovo Ideapad",price:32900,img:"https://img.advice.co.th/images_nas/pic_product4/A0149009/A0149009_s.jpg"},
-        {id:3,name:"Notebook MSI Prestige",price:54900,img:"https://img.advice.co.th/images_nas/pic_product4/A0149954/A0149954_s.jpg"},
-        {id:4,name:"Notebook DELL XPS",price:99900,img:"https://img.advice.co.th/images_nas/pic_product4/A0146335/A0146335_s.jpg"},
-        {id:5,name:"Notebook HP Envy",price:46900,img:"https://img.advice.co.th/images_nas/pic_product4/A0145712/A0145712_s.jpg"}
-    ])
-    // useEffect(() => {
-    //     axios.get(baseURL+"/api/products").then((res) => {
-    //         setProduct(res.data)
-    //     })
-    // }, [])
+    const [products, setProduct] = useState([])
+
+    useEffect(() => {
+        axios.get(baseURL+"/api/products").then((res) => {
+            setProduct(res.data)
+        }).catch(e => {console.log(e)}) 
+    }, [])
+
     const handleClick = (id) => {
         // alert("Add Success!")
         setCart([...cart, products[id]])
